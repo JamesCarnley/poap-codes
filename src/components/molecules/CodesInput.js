@@ -36,8 +36,8 @@ export default ( { label, info, on_codes, on_event, ...props } ) => {
                 let data = await parse_csv_to_codes( file )
                 log( 'Raw codes loaded: ', data )
 
-                // Remove website prefix
-                data = data.map( code => code.replace( /(https?:\/\/.*\/)/ig, '' ) )
+                // Remove website and other prefixes
+                data = data.map( code => code.replace( /(^.*https?:\/\/.*\/)/ig, '' ) )
 
                 // Take out empty lines
                 data = data.filter( code => code.length != 0 )
